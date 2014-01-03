@@ -33,11 +33,8 @@ app.get('/ws', function(request, response) {
 		'search/tweets',
 		options,
 		function(err, item) {
-			console.log("ERROR: " + err)
-			console.log("ITEM: " + item);
 
 			if (item != null) {
-				console.log("cool");
 
 				 var json = JSON.stringify(item);
 				// response.writeHead(200, {'content-type':'application/json'});
