@@ -36,16 +36,16 @@ var tweetopia = {
 
 		// Fetch Twitter Data
 
-		var searchString;
+		var searchString = "";
 
-		if (location.hash) 
-			searchString = location.hash.substr(1);
+		if (location.hash)
+			searchString = location.hash;
 		else
-			location.hash = searchString = "WebGL";
+			location.hash = "";
 
 		var searchCount = tweetopia.maxTweets;
 		var searchURL="/ws/";
-		var searchQueryString = "?q=%23" + searchString + "&rpp=" + searchCount + "&include_entities=1";
+		var searchQueryString = "?q=" + encodeURIComponent(searchString) + "&rpp=" + searchCount + "&include_entities=1";
 		tweetopia.fetchData(searchURL + searchQueryString);
 
 		// Preload Images
