@@ -24,8 +24,8 @@ app.get('/ws', function(request, response) {
 
 	var options = JSON.parse(JSON.stringify(request.query));
 
-	if (options.q == null) {
-		options.q = '%23WebGL';
+	if (options.q === null || options.q === '') {
+		options.q = config.SEARCH_TERMS || '%23WebGL';
 	}
 
 	options.callback = null;
