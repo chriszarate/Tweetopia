@@ -1,4 +1,5 @@
-var port = process.env.PORT;
+// Expects PORT, TWITTER_CONSUMER_KEY, and TWITTER_CONSUMER_SECRET
+var config = require('./config.json');
 
 var express = require("express");
 var app = express();
@@ -10,8 +11,8 @@ app.use(express.static(__dirname + '/public'));
 
 var Twitter = require('mtwitter');
 var twitter = new Twitter({
-	consumer_key: process.env.TWITTER_CONSUMER_KEY,
-	consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+	consumer_key: config.TWITTER_CONSUMER_KEY,
+	consumer_secret: config.TWITTER_CONSUMER_SECRET,
 	application_only: true
 });
 
@@ -30,7 +31,7 @@ app.get('/ws', function(request, response) {
 
 	twitter.get(
 		'search/tweets',
-		options, 
+		options,
 		function(err, item) {
 			console.log("ERROR: " + err)
 			console.log("ITEM: " + item);
@@ -39,8 +40,8 @@ app.get('/ws', function(request, response) {
 				console.log("cool");
 
 				 var json = JSON.stringify(item);
-				// response.writeHead(200, {'content-type':'application/json'}); 
-				response.jsonp(item);	
+				// response.writeHead(200, {'content-type':'application/json'});
+				response.jsonp(item);
 			}
 		}
 	);
@@ -48,6 +49,6 @@ app.get('/ws', function(request, response) {
 });
 
 
-app.listen(port, function() {
-	console.log("Listening on " + port);
+app.listen(config.PORT, function() {
+	console.log("Listening on " + config.PORT);
 });
