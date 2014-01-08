@@ -240,7 +240,7 @@ var ttobjects = {
 
 		var labelMesh = ttobjects.createLabel(tweetData);
 		labelMesh.position.x = 52;
-		labelMesh.position.y = 0;
+		labelMesh.position.y = 1;
 		labelMesh.position.z = -16;
 
 		characterMesh.add(labelMesh);
